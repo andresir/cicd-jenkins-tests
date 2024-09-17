@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        MY_SECRET = credentials('CRED-TEST')
+    }
     stages{
         stage('Test get credential') {
             steps {
