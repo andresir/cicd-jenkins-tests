@@ -2,6 +2,18 @@ pipeline {
     agent any
 
     stages{
+        stage('Test get credential') {
+            steps {
+                script {
+                    if (env.MY_SECRET == '123456') {
+                        echo 'benarrrr'
+                    } else {
+                        echo 'salahhhh'
+                    }
+                    echo "My secret is ${env.MY_SECRET}"
+                }
+            }
+        }
         stage('Build Maven'){
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/andresir/cicd-jenkins-tests.git']]])
